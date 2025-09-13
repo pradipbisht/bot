@@ -33,7 +33,21 @@ export const protect = async (req, res, next) => {
   const token = req.cookies.token; // Get token from cookies
 
   if (!token) {
-    logger.warn("Unauthorized access attempt: No token provided");
+    const source = {
+      ip:
+        req.ip ||
+        req.headers["x-forwarded-for"] ||
+        req.connection.remoteAddress,
+      method: req.method,
+      path: req.originalUrl || req.url,
+      userAgent: req.headers["user-agent"],
+    };
+    // Log cookie names (avoid logging token value directly)
+    const cookieNames = req.cookies ? Object.keys(req.cookies) : [];
+    logger.warn("Unauthorized access attempt: No token provided", {
+      source,
+      cookieNames,
+    });
     return res.status(401).json({ message: "Not authorized, no token" });
   }
 

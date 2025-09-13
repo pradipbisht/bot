@@ -7,8 +7,8 @@ import rateLimit from "express-rate-limit";
 import compression from "compression";
 
 import userRoutes from "./routes/userRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 import healthRoutes from "./routes/healthRoutes.js";
-import adminRoutes from "./routes/adminRoutes.js";
 import botRoutes from "./routes/botRoutes.js";
 import connectDb from "./config/db.js";
 import { errorHandler } from "./utils/errorHandler.js";
@@ -32,19 +32,31 @@ app.use(cookieParser()); // Parse cookies
 app.use(compression());
 
 // Apply rate limiting to prevent abuse
-app.use(
-  rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // Limit each IP to 100 requests per window
-    message: "Too many requests, try again later",
-  })
-);
+// Apply rate limiting to prevent abuse
+if (process.env.NODE_ENV === "production") {
+  app.use(
+    rateLimit({
+      windowMs: 15 * 60 * 1000, // 15 minutes
+      max: 100, // Limit each IP to 100 requests per window
+      message: "Too many requests, try again later",
+    })
+  );
+} else {
+  // Dev environment: higher limit or no limit
+  app.use(
+    rateLimit({
+      windowMs: 15 * 60 * 1000,
+      max: 1000, // more generous for development
+      message: "Too many requests, try again later",
+    })
+  );
+}
 
 // Register API routes
-app.use("/api/user", userRoutes);
-app.use("/api/bot", botRoutes);
-app.use("/health", healthRoutes); // Register health check route
-app.use("/api/admin", adminRoutes); // Register admin routes
+app.use("/api/auth", authRoutes); // Authentication routes
+app.use("/api/user", userRoutes); // User CRUD routes
+app.use("/api/bot", botRoutes); // Bot routes
+app.use("/health", healthRoutes); // Health check route
 
 // Global error handler
 app.use(errorHandler);

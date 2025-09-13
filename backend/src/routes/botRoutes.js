@@ -1,5 +1,6 @@
 import express from "express";
 import { BotCreate } from "../controllers/botController.js";
+import { deleteAllBotMessages } from "../controllers/botController.js";
 
 const router = express.Router();
 
@@ -9,5 +10,6 @@ router.get("/", (req, res) => {
 });
 
 router.post("/bot-create", BotCreate);
+router.delete("/delete-all", deleteAllBotMessages);
 
 export default router;

@@ -1,80 +1,58 @@
 import User from "../models/userModel.js";
-import { generateToken } from "../utils/tokenUtils.js";
-import bcrypt from "bcryptjs";
 
-export const RegisterCreate = async (req, res, next) => {
+// Get all users (admin only)
+export const getAllUsers = async (req, res, next) => {
   try {
-    const { name, email, password } = req.body;
-
-    if (!name || !email || !password) {
-      res.status(400);
-      throw new Error("All fields are required");
-    }
-
-    const userExists = await User.findOne({ email });
-    if (userExists) {
-      res.status(409);
-      throw new Error("User already exists");
-    }
-
-    const user = await User.create({ name, email, password });
-    generateToken(res, user._id);
-
-    res.status(201).json({
-      success: true,
-      message: "User registered successfully",
-      user: {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-      },
-    });
+    const users = await User.find().select("-password");
+    return res.status(200).json({ success: true, users });
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };
 
-export const LoginUser = async (req, res, next) => {
+// Get a single user by ID (admin only)
+export const getUserById = async (req, res, next) => {
   try {
-    const { email, password } = req.body;
-
-    const user = await User.findOne({ email });
+    const user = await User.findById(req.params.id).select("-password");
     if (!user) {
-      res.status(401);
-      throw new Error("Invalid email or password");
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
     }
-
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      res.status(401);
-      throw new Error("Invalid email or password");
-    }
-
-    generateToken(res, user._id);
-
-    res.json({
-      success: true,
-      message: "Login successful",
-      user: {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-      },
-    });
+    return res.status(200).json({ success: true, user });
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };
 
-export const LogoutUser = (req, res) => {
-  res.cookie("token", "", {
-    httpOnly: true,
-    expires: new Date(0),
-  });
-
-  res.json({ success: true, message: "Logged out successfully" });
+// Update user (admin only)
+export const updateUser = async (req, res, next) => {
+  try {
+    const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    }).select("-password");
+    if (!user) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
+    }
+    return res.status(200).json({ success: true, user });
+  } catch (error) {
+    return next(error);
+  }
 };
 
-export const GetProfile = (req, res) => {
-  res.json({ success: true, user: req.user });
+// Delete user (admin only)
+export const deleteUser = async (req, res, next) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    if (!user) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
+    }
+    return res.status(200).json({ success: true, message: "User deleted" });
+  } catch (error) {
+    return next(error);
+  }
 };
