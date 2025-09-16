@@ -1,51 +1,96 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { Target, Users, Award, CheckCircle, ArrowRight } from "lucide-react";
+import AnimatedBackground from "../components/test/blot/BoltAnimation";
 
-function About() {
+const About = () => {
   return (
     <div className="min-h-screen">
-      {/* Hero Banner - Page title on deep blue background */}
-      <section className="bg-blue-900 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl font-bold mb-6">
-            About{" "}
-            <span className="border-b-4 border-teal-400">DigitalGrow</span>
-          </h1>
-          <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-            We're a team of passionate digital marketing experts dedicated to
-            helping businesses achieve remarkable growth through innovative
-            strategies and proven results.
-          </p>
+      {/* Hero Banner */}
+      <section className="relative bg-white overflow-hidden py-24">
+        {/* Background */}
+        <AnimatedBackground />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
+          {/* About Section */}
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6">
+              About{" "}
+              <span className="bg-gradient-to-r from-teal-500 to-cyan-500 bg-clip-text text-transparent">
+                DigitalGrow
+              </span>
+            </h1>
+            <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
+              We're a team of passionate digital marketing experts dedicated to
+              helping businesses achieve remarkable growth through{" "}
+              <span className="text-teal-600 font-semibold">
+                innovative strategies
+              </span>{" "}
+              and{" "}
+              <span className="text-teal-600 font-semibold">
+                proven results
+              </span>
+              .
+            </p>
+          </div>
+
+          {/* Mission Section */}
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            {/* Text */}
+            <div className="space-y-6 text-center md:text-left">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
+                Our{" "}
+                <span className="text-teal-600 border-b-4 border-teal-500">
+                  Mission
+                </span>
+              </h2>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                To empower businesses of all sizes with cutting-edge digital
+                marketing strategies that drive{" "}
+                <span className="font-semibold text-teal-600">
+                  measurable results
+                </span>
+                . We believe in the power of{" "}
+                <span className="font-semibold text-teal-600">
+                  data-driven decisions
+                </span>
+                ,{" "}
+                <span className="font-semibold text-teal-600">
+                  creative excellence
+                </span>
+                , and{" "}
+                <span className="font-semibold text-teal-600">
+                  personalized approaches
+                </span>
+                that transform brands and accelerate growth.
+              </p>
+            </div>
+
+            {/* Illustration / Accent */}
+            <div className="flex justify-center md:justify-end">
+              <div className="relative w-72 h-72 rounded-3xl bg-gradient-to-tr from-teal-500 to-cyan-400 p-1 shadow-xl hover:scale-105 transition-transform duration-300">
+                <div className="absolute inset-0 bg-white rounded-3xl m-3 flex flex-col items-center justify-center text-center">
+                  <span className="text-7xl mb-3">🚀</span>
+                  <span className="text-xl font-bold text-teal-600">
+                    Growth
+                  </span>
+                </div>
+                {/* Accent Glow */}
+                <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-teal-200 rounded-full blur-3xl opacity-40"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Mission Statement - Centered text with teal underline */}
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">
-            Our{" "}
-            <span className="text-teal-600 border-b-2 border-teal-600">
-              Mission
-            </span>
-          </h2>
-          <p className="text-xl text-gray-700 leading-relaxed">
-            To empower businesses of all sizes with cutting-edge digital
-            marketing strategies that drive measurable results. We believe in
-            the power of data-driven decisions, creative excellence, and
-            personalized approaches that transform brands and accelerate growth.
-          </p>
-        </div>
-      </section>
-
-      {/* Our Process - Three steps with icons */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Our Process */}
+      <section className="relative py-20 bg-gray-50 overflow-hidden">
+        <AnimatedBackground />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Our Process
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-black">
               How we help your business grow in three simple steps
             </p>
           </div>
@@ -62,7 +107,7 @@ function About() {
               <h3 className="text-2xl font-semibold text-gray-900 mb-4">
                 Discover
               </h3>
-              <p className="text-gray-600">
+              <p className="text-black">
                 We analyze your business, competitors, and market to understand
                 your unique challenges and opportunities for growth.
               </p>
@@ -71,14 +116,12 @@ function About() {
             {/* Step 2: Build */}
             <div className="text-center">
               <div className="bg-teal-600 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Users className="w-10 h-10 text-white" />
+                <Users className="w-10 h-10 text-black" />
               </div>
-              <div className="bg-teal-600 text-white w-8 h-8 rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold">
+              <div className="bg-teal-600 text-black w-8 h-8 rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold">
                 2
               </div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-                Build
-              </h3>
+              <h3 className="text-2xl font-semibold text-black mb-4">Build</h3>
               <p className="text-gray-600">
                 We create customized digital marketing strategies and campaigns
                 tailored specifically to your business goals and target
@@ -106,9 +149,10 @@ function About() {
         </div>
       </section>
 
-      {/* Meet the Team - Grid with photos and roles */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Meet the Team */}
+      <section className="relative py-20 bg-white overflow-hidden">
+        <AnimatedBackground />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Meet Our Team
@@ -185,9 +229,10 @@ function About() {
         </div>
       </section>
 
-      {/* Why We're Different - Comparison with teal highlights */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Why We're Different */}
+      <section className="relative py-20 bg-gray-50 overflow-hidden">
+        <AnimatedBackground />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               Why We're Different
@@ -265,8 +310,9 @@ function About() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative py-20 bg-white overflow-hidden">
+        <AnimatedBackground />
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-gray-900 mb-6">
             Ready to Work with Us?
           </h2>
@@ -284,6 +330,6 @@ function About() {
       </section>
     </div>
   );
-}
+};
 
 export default About;

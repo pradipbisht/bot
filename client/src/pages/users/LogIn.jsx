@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { GoogleLogin } from "@react-oauth/google";
+import { googleLoginApi } from "../../api/logs/apiLogs";
 
 function LogIn() {
   const { login, isLoading, error, clearError } = useAuth();
@@ -63,6 +65,24 @@ function LogIn() {
           disabled={isLoading}>
           {isLoading ? "Logging in..." : "Login"}
         </button>
+
+        <div className="mt-4 text-center">
+          <p className="text-sm text-gray-500 mb-2">Or sign in with</p>
+          <div className="flex justify-center">
+            <GoogleLogin
+              onSuccess={async (credentialResponse) => {
+                try {
+                  const token = credentialResponse.credential;
+                  await googleLoginApi(token);
+                  navigate("/auth/success");
+                } catch (err) {
+                  console.error("Google login failed", err);
+                }
+              }}
+              onError={() => console.error("Google Sign-In failed")}
+            />
+          </div>
+        </div>
       </form>
     </div>
   );

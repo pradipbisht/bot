@@ -6,6 +6,7 @@ import {
   getMe,
 } from "../controllers/authController.js";
 import { protect } from "../middlewares/authMiddleware.js";
+import { googleLogin } from "../controllers/googleAuthController.js";
 
 const router = express.Router();
 
@@ -20,6 +21,9 @@ router.post("/logout", logoutUser);
 
 // Get current user (protected)
 router.get("/me", protect, getMe);
+
+// Google login route
+router.post("/google", googleLogin);
 
 // Dev-only debug route to inspect cookies
 router.get("/debug/cookies", (req, res) => {

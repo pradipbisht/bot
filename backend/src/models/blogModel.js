@@ -18,6 +18,11 @@ const blogSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
+    category: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     image: {
       type: String,
       required: true,
@@ -26,6 +31,9 @@ const blogSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+// Add a text index to support simple text search on title and content
+blogSchema.index({ title: "text", content: "text" });
 
 const Blog = mongoose.model("Blog", blogSchema);
 

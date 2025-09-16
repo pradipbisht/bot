@@ -72,3 +72,15 @@ npm test
 - Add API documentation using Swagger.
 - Implement comprehensive test coverage.
 - Use a logging library like `winston` for better error tracking.
+
+## Migration scripts
+
+If you previously used `approved` as the AllowedUser status, run the migration to convert those documents to the current `active` status:
+
+```bash
+# from repository root
+cd backend
+node ./scripts/migrate-allowed-users.js
+```
+
+This script reads your `backend/.env` for `MONGO_URI` and will update any AllowedUser documents with `status: 'approved'` to `status: 'active'`.

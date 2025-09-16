@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   Search,
@@ -9,87 +9,36 @@ import {
   Users,
   Target,
 } from "lucide-react";
+import apiBlog from "../api/blogs/apiBlog";
 
 function Blog() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
 
-  // Sample blog data
-  const blogPosts = [
-    {
-      id: 1,
-      title: "10 SEO Strategies That Will Skyrocket Your Rankings in 2024",
-      excerpt:
-        "Discover the latest SEO techniques that top businesses are using to dominate search results and drive organic traffic.",
-      category: "SEO",
-      author: "Michael Chen",
-      date: "2024-01-15",
-      readTime: "8 min read",
-      image:
-        "https://images.pexels.com/photos/270637/pexels-photo-270637.jpeg?auto=compress&cs=tinysrgb&w=400&h=250",
-    },
-    {
-      id: 2,
-      title: "Social Media Marketing: Complete Guide to Instagram Reels",
-      excerpt:
-        "Learn how to create viral Instagram Reels that engage your audience and boost your brand's social media presence.",
-      category: "Social Media",
-      author: "Sarah Johnson",
-      date: "2024-01-12",
-      readTime: "6 min read",
-      image:
-        "https://images.pexels.com/photos/147413/twitter-facebook-together-exchange-of-information-147413.jpeg?auto=compress&cs=tinysrgb&w=400&h=250",
-    },
-    {
-      id: 3,
-      title: "PPC Campaign Optimization: Reduce Costs by 40%",
-      excerpt:
-        "Advanced PPC strategies to improve your ad performance, reduce cost-per-click, and maximize return on ad spend.",
-      category: "PPC",
-      author: "David Rodriguez",
-      date: "2024-01-10",
-      readTime: "12 min read",
-      image:
-        "https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=400&h=250",
-    },
-    {
-      id: 4,
-      title: "AI Chatbots: The Future of Customer Service",
-      excerpt:
-        "How AI-powered chatbots are revolutionizing customer support and helping businesses provide 24/7 assistance.",
-      category: "AI Solutions",
-      author: "Michael Chen",
-      date: "2024-01-08",
-      readTime: "10 min read",
-      image:
-        "https://images.pexels.com/photos/8849295/pexels-photo-8849295.jpeg?auto=compress&cs=tinysrgb&w=400&h=250",
-    },
-    {
-      id: 5,
-      title: "Content Marketing ROI: Measuring What Matters",
-      excerpt:
-        "Learn how to track and measure the real impact of your content marketing efforts on business growth and revenue.",
-      category: "Content Marketing",
-      author: "Sarah Johnson",
-      date: "2024-01-05",
-      readTime: "7 min read",
-      image:
-        "https://images.pexels.com/photos/590020/pexels-photo-590020.jpeg?auto=compress&cs=tinysrgb&w=400&h=250",
-    },
-    {
-      id: 6,
-      title: "Email Marketing Automation That Converts",
-      excerpt:
-        "Set up automated email sequences that nurture leads and drive conversions while you sleep.",
-      category: "Email Marketing",
-      author: "David Rodriguez",
-      date: "2024-01-03",
-      readTime: "9 min read",
-      image:
-        "https://images.pexels.com/photos/1591062/pexels-photo-1591062.jpeg?auto=compress&cs=tinysrgb&w=400&h=250",
-    },
-  ];
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  useEffect(() => {
+    let mounted = true;
+    const fetchBlogs = async () => {
+      setLoading(true);
+      try {
+        const resp = await apiBlog.listBlogs();
+        // resp is server body: { success, message, data }
+        const posts = resp?.data || [];
+        if (mounted) setBlogs(posts);
+      } catch (err) {
+        console.error("Failed to load blogs", err);
+        if (mounted)
+          setError(err?.response?.data?.message || "Failed to load blogs");
+      } finally {
+        if (mounted) setLoading(false);
+      }
+    };
+    fetchBlogs();
+    return () => (mounted = false);
+  }, []);
   const categories = [
     "all",
     "SEO",
@@ -101,10 +50,12 @@ function Blog() {
   ];
 
   // Filter posts based on search and category
-  const filteredPosts = blogPosts.filter((post) => {
+  const filteredPosts = blogs.filter((post) => {
+    const title = (post.title || "").toLowerCase();
+    const excerpt = (post.content || "").slice(0, 300).toLowerCase();
     const matchesSearch =
-      post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
+      title.includes(searchTerm.toLowerCase()) ||
+      excerpt.includes(searchTerm.toLowerCase());
     const matchesCategory =
       selectedCategory === "all" || post.category === selectedCategory;
     return matchesSearch && matchesCategory;
@@ -276,63 +227,71 @@ function Blog() {
 
               {/* Article Cards */}
               <div className="grid md:grid-cols-2 gap-8">
-                {filteredPosts.map((post) => (
-                  <article
-                    key={post.id}
-                    className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden border border-gray-100">
-                    <div className="relative">
-                      <img
-                        src={post.image}
-                        alt={post.title}
-                        className="w-full h-48 object-cover"
-                      />
-                      <div className="absolute top-4 left-4">
-                        <span className="bg-teal-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                          {post.category}
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="p-6">
-                      <h2 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2 hover:text-teal-600 transition-colors">
-                        <Link to={`/blog/${post.id}`}>{post.title}</Link>
-                      </h2>
-
-                      <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                        {post.excerpt}
-                      </p>
-
-                      {/* Author and Date */}
-                      <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
-                        <div className="flex items-center">
-                          <User size={14} className="mr-1" />
-                          <span>{post.author}</span>
+                {loading ? (
+                  <div className="col-span-2 text-center py-12">
+                    Loading articles...
+                  </div>
+                ) : error ? (
+                  <div className="col-span-2 text-center py-12 text-red-600">
+                    {error}
+                  </div>
+                ) : (
+                  filteredPosts.map((post) => {
+                    const id = post._id || post.id;
+                    const image =
+                      post.image ||
+                      "https://via.placeholder.com/800x400?text=No+Image";
+                    const excerpt =
+                      (post.content || "").slice(0, 200) +
+                      (post.content && post.content.length > 200 ? "..." : "");
+                    const authorName =
+                      post.author?.name || post.author || "Unknown";
+                    const date =
+                      post.createdAt || post.date || new Date().toISOString();
+                    return (
+                      <article
+                        key={id}
+                        className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden border border-gray-100">
+                        <div className="relative">
+                          <img
+                            src={image}
+                            alt={post.title}
+                            className="w-full h-48 object-cover"
+                          />
+                          <div className="absolute top-4 left-4">
+                            <span className="bg-teal-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                              {post.category}
+                            </span>
+                          </div>
                         </div>
-                        <div className="flex items-center">
-                          <Calendar size={14} className="mr-1" />
-                          <span>
-                            {new Date(post.date).toLocaleDateString()}
-                          </span>
+                        <div className="p-6">
+                          <h2 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2 hover:text-teal-600 transition-colors">
+                            <Link to={`/blog/${id}`}>{post.title}</Link>
+                          </h2>
+                          <p className="text-gray-600 text-sm mb-4 line-clamp-3">
+                            {excerpt}
+                          </p>
+                          <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
+                            <div className="flex items-center">
+                              <User size={14} className="mr-1" />
+                              <span>{authorName}</span>
+                            </div>
+                            <div className="flex items-center">
+                              <Calendar size={14} className="mr-1" />
+                              <span>{new Date(date).toLocaleDateString()}</span>
+                            </div>
+                          </div>
+                          <Link
+                            to={`/blog/${id}`}
+                            className="text-teal-600 hover:text-teal-700 font-medium text-sm inline-flex items-center">
+                            Read More
+                            <ArrowRight size={14} className="ml-1" />
+                          </Link>
                         </div>
-                      </div>
-
-                      {/* Read More Link */}
-                      <Link
-                        to={`/blog/${post.id}`}
-                        className="text-teal-600 hover:text-teal-700 font-medium text-sm inline-flex items-center">
-                        Read More
-                        <ArrowRight size={14} className="ml-1" />
-                      </Link>
-
-                      {/* Read Time */}
-                      <div className="mt-3 pt-3 border-t border-gray-100">
-                        <span className="text-xs text-gray-500">
-                          {post.readTime}
-                        </span>
-                      </div>
-                    </div>
-                  </article>
-                ))}
+                      </article>
+                    );
+                  })
+                )}
               </div>
 
               {/* No Results */}

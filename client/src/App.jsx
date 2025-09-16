@@ -1,23 +1,33 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
-import Footer from "./components/Footer";
 import ChatBot from "./components/ChatBot";
-import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Service";
 import AISolutions from "./pages/AISolutions";
-import CaseStudies from "./pages/CaseStudies";
-import Pricing from "./pages/Pricing";
-import Blog from "./pages/Blog";
+import Pricing from "./pages/pricing/Pricing";
+import Blog from "./services/blog-service/Blog";
+import BlogDetail from "./services/blog-service/BlogDetail";
 import Contact from "./pages/Contact";
 import Payment from "./pages/Payment";
 import Signup from "./pages/users/Signup";
 import LogIn from "./pages/users/LogIn";
+import AuthSuccess from "./pages/users/AuthSuccess";
 import ProtectedRoute from "./context/ProtectedRoutes";
 import AuthDashboard from "./pages/auth-dash/AuthDashboard";
 import AdminDashboard from "./pages/dashboard/AdminDashboard";
+import AllUser from "./components/dashboard/AllUser";
+import DashboardLayout from "./components/dashboard/DashboardLayout";
 import ErrorPage from "./pages/errors/ErrorPage";
+import BlogCreation from "./services/blog-service/BlogCreation";
+import BlogEdit from "./services/blog-service/BlogEdit";
+import AdminAnalytics from "./pages/dashboard/AdminAnalytics";
+import Profile from "./pages/Profile";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Home from "./pages/home/Home";
+import Footer from "./components/footer/Footer";
+import CaseStudies from "./pages/caseStudies/CaseStudie";
 
 function App() {
   return (
@@ -36,6 +46,7 @@ function App() {
           <Route path="/case-studies" element={<CaseStudies />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogDetail />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="*" element={<ErrorPage />} />
@@ -58,14 +69,76 @@ function App() {
             }
           />
 
+          <Route
+            path="/admin/analytics"
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <AdminAnalytics />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin/users"
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <DashboardLayout title="User Management">
+                  <AllUser />
+                </DashboardLayout>
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Blog creation route available to authenticated users; admin has access too */}
+          <Route
+            path="/blog/create"
+            element={
+              <ProtectedRoute>
+                <BlogCreation />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Blog edit - admin only */}
+          <Route
+            path="/blog/edit/:id"
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <BlogEdit />
+              </ProtectedRoute>
+            }
+          />
+
           {/* Secret Company Access Routes */}
           <Route path="/company-access/login" element={<LogIn />} />
           <Route path="/company-access/signup" element={<Signup />} />
+          <Route path="/auth/success" element={<AuthSuccess />} />
         </Routes>
       </main>
 
       {/* Footer */}
       <Footer />
+
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
 
       {/* Hidden Admin Login Link in Footer */}
       <div

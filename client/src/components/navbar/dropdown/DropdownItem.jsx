@@ -5,7 +5,7 @@ function DropdownItem({ to, children }) {
   return (
     <Link
       to={to}
-      className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+      className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200 rounded-lg mx-2">
       {children}
     </Link>
   );
