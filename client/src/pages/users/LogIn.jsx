@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { GoogleLogin } from "@react-oauth/google";
-import { googleLoginApi } from "../../api/logs/apiLogs";
+import { googleLoginApi } from "../../api/auth/apiLogs";
 
 function LogIn() {
   const { login, isLoading, error, clearError } = useAuth();
