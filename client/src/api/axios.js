@@ -1,8 +1,13 @@
 import axios from "axios";
 import { logError } from "./logs/apiLogs";
 
+const baseURL =
+  import.meta.env.VITE_API_URL?.trim() ||
+  (typeof window !== "undefined" && window.__API_URL__) ||
+  "http://localhost:5001";
+
 const api = axios.create({
-  baseURL: "http://localhost:5001",
+  baseURL,
   withCredentials: true, // 🔑 include cookies
   headers: {
     "Content-Type": "application/json",
@@ -12,7 +17,9 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     // Rely on HTTP-only cookies for auth; do not attach tokens from localStorage
-    console.log("Request sent:", config);
+    if (import.meta.env.MODE !== "production") {
+      console.log("Request sent:", config);
+    }
     return config;
   },
   (error) => {

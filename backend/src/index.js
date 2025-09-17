@@ -26,6 +26,7 @@ dotenv.config();
 // Connect to MongoDB and start server
 const app = express();
 const PORT = process.env.PORT || 5000;
+const isProd = process.env.NODE_ENV === "production";
 
 // Ensure a default admin exists if env vars provided
 const ensureDefaultAdmin = async () => {
@@ -64,8 +65,42 @@ const ensureDefaultAdmin = async () => {
 };
 
 // Apply security-related middleware
+app.set("trust proxy", 1);
 app.use(helmet());
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+
+// CORS configuration (env-driven)
+const devDefaultOrigins = ["http://localhost:5173"];
+const envOrigins = (process.env.CORS_ORIGINS || "")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
+const allowedOrigins =
+  envOrigins.length > 0 ? envOrigins : isProd ? [] : devDefaultOrigins;
+if (isProd && allowedOrigins.length === 0) {
+  console.warn(
+    "Warning: CORS_ORIGINS is empty in production. Set it to your frontend URLs."
+  );
+}
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true); // allow non-browser requests
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    const msg = `CORS blocked for origin: ${origin}`;
+    return callback(new Error(msg), false);
+  },
+  credentials: true,
+  methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE", "OPTIONS"],
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+    "X-Requested-With",
+    "Accept",
+  ],
+  optionsSuccessStatus: 204,
+};
+app.use(cors(corsOptions));
+app.options(/.*/, cors(corsOptions));
 app.use(express.json());
 // Parse urlencoded bodies (for traditional form posts)
 app.use(express.urlencoded({ extended: true }));
@@ -81,7 +116,7 @@ app.use(
 app.use(cookieParser());
 
 // Logging middleware
-if (process.env.NODE_ENV === "production") {
+if (isProd) {
   app.use(morgan("combined")); // detailed logs for production
 } else {
   app.use(morgan("dev")); // concise colorful logs for dev
@@ -91,7 +126,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(compression());
 
 // Rate limiting
-if (process.env.NODE_ENV === "production") {
+if (isProd) {
   app.use(
     rateLimit({
       windowMs: 15 * 60 * 1000,
@@ -126,7 +161,10 @@ const startServer = async () => {
   await connectDb();
   await ensureDefaultAdmin();
   app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server listening on port ${PORT}`);
+    if (!isProd) {
+      console.log("CORS allowed origins:", allowedOrigins);
+    }
   });
 };
 

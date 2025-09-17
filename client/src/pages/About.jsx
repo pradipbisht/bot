@@ -16,20 +16,22 @@ const About = () => {
             <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6">
               About{" "}
               <span className="bg-gradient-to-r from-teal-500 to-cyan-500 bg-clip-text text-transparent">
-                DigitalGrow
+                KPIVIBE
               </span>
             </h1>
             <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
-              We're a team of passionate digital marketing experts dedicated to
-              helping businesses achieve remarkable growth through{" "}
-              <span className="text-teal-600 font-semibold">
-                innovative strategies
-              </span>{" "}
-              and{" "}
-              <span className="text-teal-600 font-semibold">
-                proven results
-              </span>
-              .
+              KPIVIBE was founded with a clear purpose: to empower businesses of
+              every size with marketing that drives growth, builds trust, and
+              creates lasting impact. We blend data-driven strategy with
+              creative storytelling to craft campaigns that don’t just reach
+              people—they move them.
+            </p>
+            <p className="mt-4 text-lg sm:text-xl text-gray-600 leading-relaxed">
+              Whether you’re a startup finding your first customers or an
+              enterprise scaling into new markets, our team delivers clarity,
+              consistency, and measurable outcomes. We stand for transparency,
+              innovation, and excellence—so your brand resonates and your
+              revenue potential is realized.
             </p>
           </div>
 
@@ -44,24 +46,12 @@ const About = () => {
                 </span>
               </h2>
               <p className="text-lg text-gray-700 leading-relaxed">
-                To empower businesses of all sizes with cutting-edge digital
-                marketing strategies that drive{" "}
-                <span className="font-semibold text-teal-600">
-                  measurable results
-                </span>
-                . We believe in the power of{" "}
-                <span className="font-semibold text-teal-600">
-                  data-driven decisions
-                </span>
-                ,{" "}
-                <span className="font-semibold text-teal-600">
-                  creative excellence
-                </span>
-                , and{" "}
-                <span className="font-semibold text-teal-600">
-                  personalized approaches
-                </span>
-                that transform brands and accelerate growth.
+                At KPIVIBE, our mission is to equip brands with full-spectrum
+                marketing solutions that are measurable, scalable, and genuinely
+                impactful. We combine creativity with data to help you hit your
+                KPIs while building authentic connections with your audience.
+                Through innovation, storytelling, and technology, we deliver
+                marketing that doesn’t just look good— it drives real results.
               </p>
             </div>
 
@@ -76,6 +66,43 @@ const About = () => {
                 </div>
                 {/* Accent Glow */}
                 <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-teal-200 rounded-full blur-3xl opacity-40"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Vision Section */}
+      <section className="relative py-16 bg-white overflow-hidden">
+        <AnimatedBackground />
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="space-y-6 text-center md:text-left">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
+                Our{" "}
+                <span className="text-teal-600 border-b-4 border-teal-500">
+                  Vision
+                </span>
+              </h2>
+              <p className="text-lg text-gray-700 leading-relaxed">
+                Our vision is to be the trusted growth partner for businesses
+                pursuing both financial performance and brand excellence. We
+                help companies reach their maximum revenue potential, build
+                brand equity, and expand market influence. By uniting strategic
+                insight with creative innovation, KPIVIBE champions marketing
+                that drives profitability, builds recognition, and shapes brands
+                that thrive in competitive landscapes.
+              </p>
+            </div>
+            <div className="flex justify-center md:justify-end">
+              <div className="relative w-72 h-72 rounded-3xl bg-gradient-to-tr from-cyan-400 to-teal-500 p-1 shadow-xl hover:scale-105 transition-transform duration-300">
+                <div className="absolute inset-0 bg-white rounded-3xl m-3 flex flex-col items-center justify-center text-center">
+                  <span className="text-7xl mb-3">🌟</span>
+                  <span className="text-xl font-bold text-teal-600">
+                    Vision
+                  </span>
+                </div>
+                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-cyan-200 rounded-full blur-3xl opacity-40"></div>
               </div>
             </div>
           </div>
@@ -272,10 +299,10 @@ const About = () => {
                 </ul>
               </div>
 
-              {/* DigitalGrow */}
+              {/* KPIVIBE */}
               <div className="bg-teal-50 p-6 rounded-xl">
                 <h3 className="text-2xl font-semibold text-teal-900 mb-6">
-                  DigitalGrow
+                  KPIVIBE
                 </h3>
                 <ul className="space-y-4">
                   <li className="flex items-center">

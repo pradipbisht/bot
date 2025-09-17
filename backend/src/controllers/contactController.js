@@ -36,9 +36,7 @@ export const sendContactMessage = async (req, res, next) => {
     }
 
     const mailOptions = {
-      from: `"${name}" <${
-        process.env.SMTP_USER || process.env.SMTP_USER || "no-reply@example.com"
-      }>`,
+      from: `"${name}" <${process.env.SMTP_USER || "no-reply@example.com"}>`,
       replyTo: email,
       to:
         process.env.CONTACT_RECEIVER ||
@@ -68,20 +66,16 @@ export const sendContactMessage = async (req, res, next) => {
       );
       console.log("CONTACT FORM MESSAGE:", mailOptions);
       // Return success-like response so frontend treats it as accepted for dev
-      return res
-        .status(200)
-        .json({
-          message: "Message received (logged).",
-          detail: sendErr && sendErr.message ? sendErr.message : undefined,
-        });
+      return res.status(200).json({
+        message: "Message received (logged).",
+        detail: sendErr && sendErr.message ? sendErr.message : undefined,
+      });
     }
   } catch (err) {
     console.error("Contact send error:", err);
-    return res
-      .status(500)
-      .json({
-        message: "Failed to send message",
-        error: err && err.message ? err.message : undefined,
-      });
+    return res.status(500).json({
+      message: "Failed to send message",
+      error: err && err.message ? err.message : undefined,
+    });
   }
 };
