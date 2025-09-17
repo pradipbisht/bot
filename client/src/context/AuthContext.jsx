@@ -88,11 +88,14 @@ const authReducer = (state, action) => {
 export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
   const checkingRef = useRef(false);
+  const unauthorizedHandledRef = useRef(false);
 
   // Handle global unauthorized events emitted by axios
   useEffect(() => {
+    if (typeof window === "undefined") return;
     const handler = () => {
-      // logout once when unauthorized detected
+      if (unauthorizedHandledRef.current) return;
+      unauthorizedHandledRef.current = true;
       dispatch({ type: AUTH_ACTIONS.LOGOUT });
     };
     window.addEventListener("auth:unauthorized", handler);
@@ -120,6 +123,7 @@ export const AuthProvider = ({ children }) => {
         null;
       if (userData) {
         dispatch({ type: AUTH_ACTIONS.SET_USER, payload: userData });
+        unauthorizedHandledRef.current = false;
       } else {
         dispatch({ type: AUTH_ACTIONS.SET_USER, payload: null });
       }
@@ -143,11 +147,13 @@ export const AuthProvider = ({ children }) => {
         null;
       if (userData) {
         dispatch({ type: AUTH_ACTIONS.LOGIN_SUCCESS, payload: userData });
+        unauthorizedHandledRef.current = false;
         return { success: true, data: userData };
       }
       if (response?.success && response?.data && response.data.user) {
         const ud = response.data.user;
         dispatch({ type: AUTH_ACTIONS.LOGIN_SUCCESS, payload: ud });
+        unauthorizedHandledRef.current = false;
         return { success: true, data: ud };
       }
       throw new Error(
