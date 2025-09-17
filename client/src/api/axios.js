@@ -1,5 +1,5 @@
 import axios from "axios";
-import { logError } from "./Logs/apiLogs";
+import { logError } from "./Auth/apiLogs";
 
 const baseURL =
   import.meta.env.VITE_API_URL?.trim() ||

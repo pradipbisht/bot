@@ -11,7 +11,7 @@ import {
   logoutApi,
   registerApi,
   checkAuthApi,
-} from "../api/Logs/apiLogs";
+} from "../api/Auth/apiLogs";
 
 // Create context
 const AuthContext = createContext();
