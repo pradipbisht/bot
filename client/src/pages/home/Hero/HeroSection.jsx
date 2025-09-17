@@ -90,7 +90,7 @@ function HeroSection() {
       </div>
 
       {/* Keep CSS for animations */}
-      <style jsx>{`
+      <style>{`
         .stars-container {
           position: absolute;
           width: 100%;

@@ -54,7 +54,7 @@ const AnimatedBackground = () => {
         className="absolute inset-0 overflow-hidden pointer-events-none"
         style={{ zIndex: 1 }}
       />
-      <style jsx>{`
+      <style>{`
         @keyframes float {
           0%, 100% {
             transform: translate(0, 0) scale(1);

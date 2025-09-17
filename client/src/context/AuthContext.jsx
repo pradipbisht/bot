@@ -11,6 +11,7 @@ import {
   logoutApi,
   registerApi,
   checkAuthApi,
+  // IMPORTANT: The import path and file/folder names must match exactly (case-sensitive on Vercel/Linux)
 } from "../api/logs/apiLogs";
 
 // Create context
