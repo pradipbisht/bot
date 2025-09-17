@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { checkAuthApi } from "../../api/logs/apiLogs";
+import { checkAuthApi } from "../../api/Logs/apiLogs";
 
 export default function AuthSuccess() {
   const [user, setUser] = useState(null);

@@ -11,7 +11,7 @@ function Logo() {
           <div className="absolute -inset-1 bg-teal-600/20 rounded-full blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
         </div>
         <span className="text-3xl ubuntu-bold font-bold bg-gradient-to-r from-teal-600 to-purple-600 bg-clip-text text-transparent">
-          DigitalGrow
+          Softsuites
         </span>
       </Link>
     </div>

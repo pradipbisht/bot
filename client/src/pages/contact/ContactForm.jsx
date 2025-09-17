@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { sendContactMessage } from "../../api/contact/apiContact";
+import { sendContactMessage } from "../../api/Contact/apiContact";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({

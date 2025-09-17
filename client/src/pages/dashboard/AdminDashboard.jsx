@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import DashboardLayout from "../../components/dashboard/DashboardLayout";
 import AllUser from "../../components/dashboard/AllUser";
 import api from "../../api/axios";
-import apiBlog from "../../api/blogs/apiBlog";
+import apiBlog from "../../api/Blogs/apiBlog";
 import { toast } from "react-toastify";
 import OverviewCards from "./admin/OverviewCards";
 import RecentPosts from "./admin/RecentPosts";

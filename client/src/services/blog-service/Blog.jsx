@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Search, TrendingUp, Users, Target } from "lucide-react";
-import apiBlog from "../../api/blogs/apiBlog";
+import apiBlog from "../../api/Blogs/apiBlog";
 import BlogHero from "./components/BlogHero";
 import BlogSidebar from "./components/BlogSidebar";
 import BlogGrid from "./components/BlogGrid";

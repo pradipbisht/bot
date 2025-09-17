@@ -1,5 +1,5 @@
 import api from "../axios";
-import { logError } from "../logs/apiLogs";
+import { logError } from "../Logs/apiLogs";
 // import { logError } from "../logs/apiLogs";
 
 // Call backend bot feature

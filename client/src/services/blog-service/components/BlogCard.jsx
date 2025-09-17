@@ -2,7 +2,7 @@ import React from "react";
 import { Calendar, User, ArrowRight, Edit, Trash } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import apiBlog from "../../../api/blogs/apiBlog";
+import apiBlog from "../../../api/Blogs/apiBlog";
 import { useAuth } from "../../../context/AuthContext";
 
 export default function BlogCard({ post }) {
