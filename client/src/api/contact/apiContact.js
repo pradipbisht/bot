@@ -5,7 +5,6 @@ export const sendContactMessage = async (formData) => {
     const { data } = await api.post("/api/contact", formData);
     return data;
   } catch (err) {
-    // Normalize error for callers
     const serverMessage =
       err?.response?.data?.message ||
       err?.response?.data?.error ||

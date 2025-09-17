@@ -9,7 +9,7 @@ import {
   Users,
   Target,
 } from "lucide-react";
-import apiBlog from "../api/Blogs/apiBlog";
+import apiBlog from "../api/blogs/apiBlog";
 
 function Blog() {
   const [searchTerm, setSearchTerm] = useState("");

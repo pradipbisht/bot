@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { MessageCircle, X } from "lucide-react";
-import { botApi, deleteAllBotMessagesApi } from "../api/Bots/apiBot";
+import { botApi, deleteAllBotMessagesApi } from "../api/bots/apiBot";
 
 function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);

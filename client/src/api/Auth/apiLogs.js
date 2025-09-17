@@ -1,6 +1,5 @@
 import api from "../axios";
 
-// Centralized logging utility
 export const logError = (message, error) => {
   console.error(`${message}:`, error.response?.data || error.message);
 };

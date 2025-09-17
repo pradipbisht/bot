@@ -12,7 +12,6 @@ const apiBlog = {
   },
 
   createBlog: async (payload) => {
-    // payload can be FormData (for file upload) or a JSON object
     const headers =
       payload instanceof FormData
         ? { "Content-Type": "multipart/form-data" }

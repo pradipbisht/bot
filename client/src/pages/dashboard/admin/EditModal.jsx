@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { toast } from "react-toastify";
-import apiBlog from "../../../api/Blogs/apiBlog";
+import apiBlog from "../../../api/blogs/apiBlog";
 
 export default function EditModal({ post, onClose, onSaved }) {
   const [title, setTitle] = useState(post?.title || "");
