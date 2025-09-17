@@ -1,5 +1,5 @@
 import axios from "axios";
-import { logError } from "./auth/apiLogs";
+import * as AuthApi from "./auth/apiLogs";
 
 const baseURL =
   import.meta.env.VITE_API_URL?.trim() ||
@@ -23,7 +23,7 @@ api.interceptors.request.use(
     return config;
   },
   (error) => {
-    logError("Request error", error);
+    AuthApi.logError("Request error", error);
     return Promise.reject(error);
   }
 );
@@ -40,10 +40,10 @@ api.interceptors.response.use(
       } catch (e) {
         // In non-browser environments, ignore
       }
-      logError("Unauthorized access detected", error);
+      AuthApi.logError("Unauthorized access detected", error);
       // Do NOT redirect here to avoid reload loops or multiple requests; let AuthContext handle logout
     } else {
-      logError("Response error", error);
+      AuthApi.logError("Response error", error);
     }
     return Promise.reject(error);
   }

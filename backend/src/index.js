@@ -69,7 +69,8 @@ app.set("trust proxy", 1);
 app.use(helmet());
 
 // CORS configuration (env-driven)
-const devDefaultOrigins = ["http://localhost:5173"];
+const devDefaultOrigins = ["http://localhost:5173"]; // kept for visibility
+const localhostRegex = /^http:\/\/localhost:\d+$/; // allow any localhost port in dev
 const envOrigins = (process.env.CORS_ORIGINS || "")
   .split(",")
   .map((s) => s.trim())
@@ -86,6 +87,7 @@ const corsOptions = {
   origin: (origin, callback) => {
     if (!origin) return callback(null, true); // allow non-browser requests
     if (allowedOrigins.includes(origin)) return callback(null, true);
+    if (!isProd && localhostRegex.test(origin)) return callback(null, true);
     const msg = `CORS blocked for origin: ${origin}`;
     return callback(new Error(msg), false);
   },

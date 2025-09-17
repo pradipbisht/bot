@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "checkJs": false,
+        "forceConsistentCasingInFileNames": true,
+        "baseUrl": ".",
+        "types": [
+            "vite/client"
+        ]
+    },
+    "exclude": [
+        "node_modules",
+        "dist",
+        "src/api/Auth/**"
+    ]
+}

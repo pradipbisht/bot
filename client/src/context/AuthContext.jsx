@@ -1,3 +1,4 @@
+// @ts-nocheck
 // src/context/AuthContext.jsx
 import {
   createContext,
@@ -6,15 +7,10 @@ import {
   useEffect,
   useRef,
 } from "react";
-import {
-  loginApi,
-  logoutApi,
-  registerApi,
-  checkAuthApi,
-} from "../api/auth/apiLogs";
+import * as AuthApi from "../api/auth/apiLogs";
 
 // Create context
-const AuthContext = createContext();
+const AuthContext = createContext(null);
 
 // Initial state
 const initialState = {
@@ -113,7 +109,7 @@ export const AuthProvider = ({ children }) => {
     checkingRef.current = true;
     try {
       dispatch({ type: AUTH_ACTIONS.SET_LOADING, payload: true });
-      const response = await checkAuthApi();
+      const response = await AuthApi.checkAuthApi();
 
       // API helpers return server JSON (body). Normalize to find user.
       const userData =
@@ -137,7 +133,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       dispatch({ type: AUTH_ACTIONS.LOGIN_START });
-      const response = await loginApi(email, password);
+      const response = await AuthApi.loginApi(email, password);
 
       // Normalize login response (helpers return body)
       const userData =
@@ -169,7 +165,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (name, email, password) => {
     try {
       dispatch({ type: AUTH_ACTIONS.LOGIN_START });
-      const response = await registerApi(name, email, password);
+      const response = await AuthApi.registerApi(name, email, password);
 
       // Normalize register response
       if (
@@ -195,7 +191,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await logoutApi();
+      await AuthApi.logoutApi();
     } catch (error) {
       console.error("Logout error:", error);
     } finally {
