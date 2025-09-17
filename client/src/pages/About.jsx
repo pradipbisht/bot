@@ -179,8 +179,8 @@ const About = () => {
                 CEO & Digital Strategy Director
               </p>
               <p className="text-gray-600 text-sm">
-                15+ years in digital marketing with expertise in SEO, PPC, and
-                growth strategy.
+                15+ years in digital marketing with expertise in SEO, Paid Ads,
+                and growth strategy.
               </p>
             </div>
 

@@ -71,7 +71,7 @@ function Services() {
       icon: <Target className="w-6 h-6" />,
       description: "Data-driven campaigns that deliver ROI",
       services: [
-        "Pay-Per-Click (PPC) campaigns",
+        "Paid Ads campaigns",
         "Retargeting ads (bring back past visitors)",
         "Analytics tracking & ROI reporting",
         "Conversion optimization and funnel analysis",
@@ -207,11 +207,21 @@ function Services() {
                       <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent">
                         <option value="">Select Service</option>
                         <option value="seo">SEO</option>
-                        <option value="social">Social Media</option>
-                        <option value="ppc">PPC Advertising</option>
-                        <option value="content">Content Marketing</option>
-                        <option value="web">Web Design</option>
-                        <option value="ai">AI Solutions</option>
+                        <option value="content-marketing">
+                          Content Marketing
+                        </option>
+                        <option value="social-media">Social Media</option>
+                        <option value="paid-ads">Paid Ads</option>
+                        <option value="email-marketing">Email Marketing</option>
+                        <option value="analytics">Analytics</option>
+                        <option value="marketing-tools">Marketing Tools</option>
+                        <option value="ai-emerging-tech">
+                          AI & Emerging Tech
+                        </option>
+                        <option value="cro-websites">CRO & Websites</option>
+                        <option value="mobile-marketing">
+                          Mobile Marketing
+                        </option>
                       </select>
                     </div>
                     <div>

@@ -138,12 +138,16 @@ export default function ContactForm() {
                 onChange={handleInputChange}
                 className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors">
                 <option value="">Select a service</option>
-                <option value="seo">SEO Optimization</option>
-                <option value="social-media">Social Media Marketing</option>
-                <option value="ppc">PPC Advertising</option>
-                <option value="content">Content Marketing</option>
-                <option value="web-design">Web Design</option>
-                <option value="ai-solutions">AI Solutions</option>
+                <option value="seo">SEO</option>
+                <option value="content-marketing">Content Marketing</option>
+                <option value="social-media">Social Media</option>
+                <option value="paid-ads">Paid Ads</option>
+                <option value="email-marketing">Email Marketing</option>
+                <option value="analytics">Analytics</option>
+                <option value="marketing-tools">Marketing Tools</option>
+                <option value="ai-emerging-tech">AI & Emerging Tech</option>
+                <option value="cro-websites">CRO & Websites</option>
+                <option value="mobile-marketing">Mobile Marketing</option>
                 <option value="full-service">Full Service Package</option>
                 <option value="consultation">Free Consultation</option>
               </select>

@@ -16,17 +16,21 @@
 
 //   // Sample blog data
 //   // const blogPosts = [
-//   //   {
-//   //     id: 1,
-//   //     title: "10 SEO Strategies That Will Skyrocket Your Rankings in 2024",
-//   //     excerpt:
-//   //       "Discover the latest SEO techniques that top businesses are using to dominate search results and drive organic traffic.",
-//   //     category: "SEO",
-//   //     author: "Michael Chen",
-//   //     date: "2024-01-15",
-//   //     readTime: "8 min read",
-//   //     image:
-//   //       "https://images.pexels.com/photos/270637/pexels-photo-270637.jpeg?auto=compress&cs=tinysrgb&w=400&h=250",
+//   // ];
+
+const categories = [
+  "all",
+  "SEO",
+  "Content Marketing",
+  "Social Media",
+  "Paid Ads",
+  "Email Marketing",
+  "Analytics",
+  "Marketing Tools",
+  "AI & Emerging Tech",
+  "CRO & Websites",
+  "Mobile Marketing",
+];
 //   //   },
 //   //   {
 //   //     id: 2,
@@ -42,10 +46,10 @@
 //   //   },
 //   //   {
 //   //     id: 3,
-//   //     title: "PPC Campaign Optimization: Reduce Costs by 40%",
+//   //     title: "Paid Ads Campaign Optimization: Reduce Costs by 40%",
 //   //     excerpt:
-//   //       "Advanced PPC strategies to improve your ad performance, reduce cost-per-click, and maximize return on ad spend.",
-//   //     category: "PPC",
+//   //       "Advanced Paid Ads strategies to improve your ad performance, reduce cost-per-click, and maximize return on ad spend.",
+//   //     category: "Paid Ads",
 //   //     author: "David Rodriguez",
 //   //     date: "2024-01-10",
 //   //     readTime: "12 min read",
@@ -57,7 +61,7 @@
 //   //     title: "AI Chatbots: The Future of Customer Service",
 //   //     excerpt:
 //   //       "How AI-powered chatbots are revolutionizing customer support and helping businesses provide 24/7 assistance.",
-//   //     category: "AI Solutions",
+//   //     category: "AI & Emerging Tech",
 //   //     author: "Michael Chen",
 //   //     date: "2024-01-08",
 //   //     readTime: "10 min read",
@@ -94,10 +98,10 @@
 //     "all",
 //     "SEO",
 //     "Social Media",
-//     "PPC",
+//     "Paid Ads",
 //     "Content Marketing",
 //     "Email Marketing",
-//     "AI Solutions",
+//     "AI & Emerging Tech",
 //   ];
 
 //   // Filter posts based on search and category

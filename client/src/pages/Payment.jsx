@@ -24,7 +24,7 @@ function Payment() {
     description: "Most popular choice for growing businesses",
     features: [
       "Advanced SEO (15 keywords)",
-      "PPC campaign management",
+      "Paid Ads campaign management",
       "Social media management (4 platforms)",
       "Content creation (8 posts/month)",
       "Email marketing campaigns",

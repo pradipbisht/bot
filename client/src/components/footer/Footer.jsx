@@ -7,12 +7,12 @@ import AnimatedBackground from "../test/blot/BoltAnimation";
 
 const Footer = () => {
   const servicesLinks = [
-    { href: "/services", label: "SEO Optimization" },
-    { href: "/services", label: "Social Media Marketing" },
-    { href: "/services", label: "PPC Advertising" },
-    { href: "/services", label: "Content Marketing" },
-    { href: "/services", label: "Web Design" },
-    { href: "/ai-solutions", label: "AI Solutions" },
+    { href: "/services?cat=seo", label: "SEO" },
+    { href: "/services?cat=content-marketing", label: "Content Marketing" },
+    { href: "/services?cat=social-media", label: "Social Media" },
+    { href: "/services?cat=paid-ads", label: "Paid Ads" },
+    { href: "/services?cat=email-marketing", label: "Email Marketing" },
+    { href: "/services?cat=ai-emerging-tech", label: "AI & Emerging Tech" },
   ];
 
   const companyLinks = [

@@ -21,11 +21,15 @@ export default function EditModal({ post, onClose, onSaved }) {
 
   const categories = [
     "SEO",
-    "Social Media",
-    "PPC",
     "Content Marketing",
+    "Social Media",
+    "Paid Ads",
     "Email Marketing",
-    "AI Solutions",
+    "Analytics",
+    "Marketing Tools",
+    "AI & Emerging Tech",
+    "CRO & Websites",
+    "Mobile Marketing",
   ];
 
   const handleSubmit = async (e) => {

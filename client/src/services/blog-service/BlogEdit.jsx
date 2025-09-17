@@ -19,11 +19,15 @@ export default function BlogEdit() {
 
   const categories = [
     "SEO",
-    "Social Media",
-    "PPC",
     "Content Marketing",
+    "Social Media",
+    "Paid Ads",
     "Email Marketing",
-    "AI Solutions",
+    "Analytics",
+    "Marketing Tools",
+    "AI & Emerging Tech",
+    "CRO & Websites",
+    "Mobile Marketing",
   ];
 
   useEffect(() => {

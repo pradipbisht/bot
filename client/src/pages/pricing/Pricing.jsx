@@ -38,7 +38,7 @@ const plans = [
     features: [
       "Everything in Starter, plus:",
       "Advanced SEO (15 keywords)",
-      "PPC campaign management ($2K ad spend)",
+      "Paid Ads campaign management ($2K ad spend)",
       "Social media management (4 platforms)",
       "Content creation (8 posts/month)",
       "Email marketing campaigns",
@@ -59,7 +59,7 @@ const plans = [
     features: [
       "Everything in Growth, plus:",
       "Premium SEO (unlimited keywords)",
-      "Unlimited PPC management",
+      "Unlimited Paid Ads management",
       "Social media (all major platforms)",
       "Content creation (20 posts/month)",
       "Video content creation",
@@ -104,7 +104,7 @@ const faqs = [
   {
     question: "How quickly will I see results?",
     answer:
-      "SEO results usually take 3-6 months, PPC is immediate, social engagement improves within first month.",
+      "SEO results usually take 3-6 months, Paid Ads are immediate, social engagement improves within first month.",
   },
 ];
 

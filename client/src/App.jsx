@@ -10,7 +10,6 @@ import Blog from "./services/blog-service/Blog";
 import BlogDetail from "./services/blog-service/BlogDetail";
 import Contact from "./pages/Contact";
 import Payment from "./pages/Payment";
-import Signup from "./pages/users/Signup";
 import LogIn from "./pages/users/LogIn";
 import AuthSuccess from "./pages/users/AuthSuccess";
 import ProtectedRoute from "./context/ProtectedRoutes";
@@ -120,7 +119,6 @@ function App() {
 
           {/* Secret Company Access Routes */}
           <Route path="/company-access/login" element={<LogIn />} />
-          <Route path="/company-access/signup" element={<Signup />} />
           <Route path="/auth/success" element={<AuthSuccess />} />
         </Routes>
       </main>

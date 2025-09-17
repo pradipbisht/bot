@@ -42,11 +42,15 @@ function Blog() {
   const categories = [
     "all",
     "SEO",
-    "Social Media",
-    "PPC",
     "Content Marketing",
+    "Social Media",
+    "Paid Ads",
     "Email Marketing",
-    "AI Solutions",
+    "Analytics",
+    "Marketing Tools",
+    "AI & Emerging Tech",
+    "CRO & Websites",
+    "Mobile Marketing",
   ];
 
   // Filter posts based on search and category
@@ -149,19 +153,19 @@ function Blog() {
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     <span className="bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-sm">
-                      SEO Tips
+                      SEO
                     </span>
                     <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">
                       Social Media
                     </span>
                     <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm">
-                      PPC Ads
+                      Paid Ads
                     </span>
                     <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
                       Analytics
                     </span>
                     <span className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm">
-                      AI Tools
+                      AI & Emerging Tech
                     </span>
                     <span className="bg-pink-100 text-pink-700 px-3 py-1 rounded-full text-sm">
                       Email Marketing
@@ -386,7 +390,7 @@ function Blog() {
                 <Target className="w-6 h-6 text-purple-600" />
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                PPC Campaign Guide
+                Paid Ads Campaign Guide
               </h3>
               <p className="text-gray-600 text-sm mb-4">
                 Step-by-step guide to creating profitable Google Ads campaigns

@@ -16,11 +16,15 @@ function Blog() {
   const categories = [
     "all",
     "SEO",
-    "Social Media",
-    "PPC",
     "Content Marketing",
+    "Social Media",
+    "Paid Ads",
     "Email Marketing",
-    "AI Solutions",
+    "Analytics",
+    "Marketing Tools",
+    "AI & Emerging Tech",
+    "CRO & Websites",
+    "Mobile Marketing",
   ];
 
   const fetchBlogs = useCallback(async (opts = {}) => {
@@ -164,7 +168,7 @@ function Blog() {
                 <Target className="w-6 h-6 text-purple-600" />
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                PPC Campaign Guide
+                Paid Ads Campaign Guide
               </h3>
               <p className="text-gray-600 text-sm mb-4">
                 Step-by-step guide to creating profitable Google Ads campaigns
