@@ -18,6 +18,10 @@ const adminsService = {
     const { data } = await api.delete(`/api/user/${id}`);
     return data;
   },
+  createUser: async (userData) => {
+    const { data } = await api.post("/api/admin/create-user", userData);
+    return data;
+  },
   // Add more admin helpers as needed
 };
 

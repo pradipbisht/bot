@@ -4,20 +4,6 @@ export const logError = (message, error) => {
   console.error(`${message}:`, error?.response?.data || error?.message);
 };
 
-export const registerApi = async (name, email, password) => {
-  try {
-    const { data } = await api.post("/api/auth/register", {
-      name,
-      email,
-      password,
-    });
-    return data;
-  } catch (error) {
-    logError("Error during registration", error);
-    throw error;
-  }
-};
-
 export const loginApi = async (email, password) => {
   try {
     const { data } = await api.post("/api/auth/login", { email, password });

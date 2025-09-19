@@ -5,6 +5,7 @@ import {
   inviteEmployee,
   updateEmployeeStatus,
   listAllowedUsers,
+  createUser,
 } from "../controllers/adminController.js";
 import { protect, adminOnly } from "../middlewares/authMiddleware.js";
 
@@ -17,5 +18,6 @@ router.get("/analytics", protect, adminOnly, getAnalytics);
 router.post("/invite", protect, adminOnly, inviteEmployee);
 router.put("/update/:id", protect, adminOnly, updateEmployeeStatus);
 router.get("/allowed-users", protect, adminOnly, listAllowedUsers);
+router.post("/create-user", protect, adminOnly, createUser);
 
 export default router;

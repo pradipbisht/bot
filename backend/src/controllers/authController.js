@@ -3,34 +3,6 @@ import bcrypt from "bcryptjs";
 import { generateToken } from "../utils/tokenUtils.js";
 import { MESSAGES } from "../utils/constants.js";
 
-// Register a new user (public registration)
-export const registerUser = async (req, res, next) => {
-  try {
-    const { name, email, password } = req.body;
-    if (!name || !email || !password) {
-      res.status(400);
-      return next(new Error(MESSAGES.VALIDATION_ERROR));
-    }
-    const userExists = await User.findOne({ email });
-    if (userExists) {
-      res.status(409);
-      return next(new Error("User already exists"));
-    }
-    const user = await User.create({ name, email, password });
-    return res.status(201).json({
-      success: true,
-      message: "User registered successfully",
-      user: {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-      },
-    });
-  } catch (error) {
-    return next(error);
-  }
-};
-
 // Login user
 export const loginUser = async (req, res, next) => {
   const { email, password } = req.body;

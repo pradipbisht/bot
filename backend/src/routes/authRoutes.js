@@ -2,7 +2,7 @@ import express from "express";
 import {
   loginUser,
   logoutUser,
-  registerUser,
+  // registerUser,
   getMe,
 } from "../controllers/authController.js";
 import { protect } from "../middlewares/authMiddleware.js";
@@ -11,7 +11,7 @@ import { googleLogin } from "../controllers/googleAuthController.js";
 const router = express.Router();
 
 // Register route
-router.post("/register", registerUser);
+// router.post("/register", registerUser);
 
 // Login route
 router.post("/login", loginUser);

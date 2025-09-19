@@ -2,6 +2,26 @@ import User from "../models/userModel.js";
 import Blog from "../models/blogModel.js";
 import AllowedUser from "../models/allowedUser.js";
 
+// create new user
+export const createUser = async (req, res, next) => {
+  try {
+    const { name, email, password, role } = req.body;
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Email already in use" });
+    }
+    const user = new User({ name, email, password, role });
+    await user.save();
+    return res
+      .status(201)
+      .json({ success: true, message: "User created", user });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // Return basic counts and simple analytics for admin dashboard
 export const getOverview = async (req, res, next) => {
   try {
