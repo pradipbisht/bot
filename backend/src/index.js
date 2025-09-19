@@ -7,7 +7,7 @@ import os from "os";
 import fileUpload from "express-fileupload";
 import rateLimit from "express-rate-limit";
 import compression from "compression";
-import morgan from "morgan"; // <-- add this
+import morgan from "morgan";
 
 import userRoutes from "./routes/userRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
@@ -20,18 +20,16 @@ import connectDb from "./config/db.js";
 import { errorHandler } from "./utils/errorHandler.js";
 import User from "./models/userModel.js";
 
-// Load environment variables from .env file
+// Load environment variables
 dotenv.config();
 
-// Connect to MongoDB and start server
 const app = express();
 const PORT = process.env.PORT || 5000;
 const isProd = process.env.NODE_ENV === "production";
 
-// Ensure a default admin exists if env vars provided
+// Ensure a default admin exists
 const ensureDefaultAdmin = async () => {
   try {
-    // If any admin user exists, skip
     const existingAdmin = await User.findOne({ role: "admin" });
     if (existingAdmin) {
       console.log(
@@ -64,35 +62,26 @@ const ensureDefaultAdmin = async () => {
   }
 };
 
-// Apply security-related middleware
+// Security middleware
 app.set("trust proxy", 1);
 app.use(helmet());
 
-// CORS configuration (env-driven)
-const devDefaultOrigins = ["http://localhost:5173"]; // kept for visibility
-const localhostRegex = /^http:\/\/localhost:\d+$/; // allow any localhost port in dev
-const vercelOrigin = "https://bot-three-ruddy.vercel.app";
-const envOrigins = (process.env.CORS_ORIGINS || "")
-  .split(",")
-  .map((s) => s.trim())
-  .filter(Boolean);
-let allowedOrigins =
-  envOrigins.length > 0 ? envOrigins : isProd ? [] : devDefaultOrigins;
-if (isProd && !allowedOrigins.includes(vercelOrigin)) {
-  allowedOrigins = [...allowedOrigins, vercelOrigin];
-}
-if (isProd && allowedOrigins.length === 0) {
-  console.warn(
-    "Warning: CORS_ORIGINS is empty in production. Set it to your frontend URLs."
-  );
-}
+// ✅ CORS configuration
+const allowedOrigins = [
+  "http://localhost:5173", // dev frontend
+  "https://bot-three-ruddy.vercel.app", // Vercel deployment
+  ...(process.env.CORS_ORIGINS
+    ? process.env.CORS_ORIGINS.split(",").map((s) => s.trim())
+    : []),
+];
 
 const corsOptions = {
   origin: (origin, callback) => {
-    if (!origin) return callback(null, true); // allow non-browser requests
+    if (!origin) return callback(null, true); // allow curl/postman
     if (allowedOrigins.includes(origin)) return callback(null, true);
-    if (!isProd && localhostRegex.test(origin)) return callback(null, true);
+
     const msg = `CORS blocked for origin: ${origin}`;
+    console.error(msg);
     return callback(new Error(msg), false);
   },
   credentials: true,
@@ -107,10 +96,12 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 app.options(/.*/, cors(corsOptions));
+
+// Body parsers
 app.use(express.json());
-// Parse urlencoded bodies (for traditional form posts)
 app.use(express.urlencoded({ extended: true }));
-// Parse multipart/form-data file uploads
+
+// File upload
 app.use(
   fileUpload({
     useTempFiles: true,
@@ -119,38 +110,25 @@ app.use(
     limits: { fileSize: 10 * 1024 * 1024 }, // 10MB
   })
 );
+
 app.use(cookieParser());
 
-// Logging middleware
-if (isProd) {
-  app.use(morgan("combined")); // detailed logs for production
-} else {
-  app.use(morgan("dev")); // concise colorful logs for dev
-}
+// Logging
+app.use(morgan(isProd ? "combined" : "dev"));
 
-// Apply compression
+// Compression
 app.use(compression());
 
 // Rate limiting
-if (isProd) {
-  app.use(
-    rateLimit({
-      windowMs: 15 * 60 * 1000,
-      max: 100,
-      message: "Too many requests, try again later",
-    })
-  );
-} else {
-  app.use(
-    rateLimit({
-      windowMs: 15 * 60 * 1000,
-      max: 1000,
-      message: "Too many requests, try again later",
-    })
-  );
-}
+app.use(
+  rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: isProd ? 100 : 1000,
+    message: "Too many requests, try again later",
+  })
+);
 
-// Register API routes
+// Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/bot", botRoutes);
@@ -159,18 +137,16 @@ app.use("/api/blog", blogRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/contact", contactRoutes);
 
-// Global error handler
+// Error handler
 app.use(errorHandler);
 
-// Start the server
+// Start server
 const startServer = async () => {
   await connectDb();
   await ensureDefaultAdmin();
   app.listen(PORT, () => {
-    console.log(`Server listening on port ${PORT}`);
-    if (!isProd) {
-      console.log("CORS allowed origins:", allowedOrigins);
-    }
+    console.log(`✅ Server listening on port ${PORT}`);
+    console.log("🌍 Allowed origins:", allowedOrigins);
   });
 };
 
