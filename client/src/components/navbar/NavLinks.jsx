@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext.jsx";
 
 const links = [
   { to: "/", label: "Home" },
@@ -13,10 +14,14 @@ const links = [
 
 function NavLinks({ onClick }) {
   const location = useLocation();
+  const { isAuthenticated } = useAuth();
+  const filteredLinks = isAuthenticated
+    ? links.filter((l) => l.label !== "Login")
+    : links;
 
   return (
     <>
-      {links.map((link) => (
+      {filteredLinks.map((link) => (
         <Link
           key={link.to}
           to={link.to}
