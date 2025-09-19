@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MessageCircle, X } from "lucide-react";
 import { botApi, deleteAllBotMessagesApi } from "../api/bots/apiBot";
 
@@ -12,6 +12,14 @@ function ChatBot() {
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const messageEndRef = React.useRef(null);
+
+  useEffect(() => {
+    if (isOpen && messageEndRef.current) {
+      messageEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [isOpen, messages]);
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -86,6 +94,8 @@ function ChatBot() {
                 </div>
               </div>
             )}
+            {/* 👇 Invisible div for scroll target */}
+            <div ref={messageEndRef} />
           </div>
 
           {/* Chat Input */}

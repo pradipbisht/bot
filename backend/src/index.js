@@ -71,12 +71,16 @@ app.use(helmet());
 // CORS configuration (env-driven)
 const devDefaultOrigins = ["http://localhost:5173"]; // kept for visibility
 const localhostRegex = /^http:\/\/localhost:\d+$/; // allow any localhost port in dev
+const vercelOrigin = "https://bot-three-ruddy.vercel.app";
 const envOrigins = (process.env.CORS_ORIGINS || "")
   .split(",")
   .map((s) => s.trim())
   .filter(Boolean);
-const allowedOrigins =
+let allowedOrigins =
   envOrigins.length > 0 ? envOrigins : isProd ? [] : devDefaultOrigins;
+if (isProd && !allowedOrigins.includes(vercelOrigin)) {
+  allowedOrigins = [...allowedOrigins, vercelOrigin];
+}
 if (isProd && allowedOrigins.length === 0) {
   console.warn(
     "Warning: CORS_ORIGINS is empty in production. Set it to your frontend URLs."
