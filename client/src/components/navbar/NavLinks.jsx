@@ -8,6 +8,7 @@ const links = [
   { to: "/pricing", label: "Pricing" },
   { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact" },
+  { to: "/company-access/login", label: "Login" },
 ];
 
 function NavLinks({ onClick }) {
