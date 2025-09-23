@@ -1,7 +1,7 @@
 import React from "react";
 import BlogCard from "./BlogCard";
 
-export default function BlogGrid({ posts, loading, error }) {
+export default function BlogGrid({ posts, loading, error, onPostClick }) {
   if (loading)
     return (
       <div className="col-span-2 text-center py-12">Loading articles...</div>
@@ -16,7 +16,7 @@ export default function BlogGrid({ posts, loading, error }) {
   return (
     <div className="grid md:grid-cols-2 gap-8">
       {posts.map((p) => (
-        <BlogCard key={p._id || p.id} post={p} />
+        <BlogCard key={p._id || p.id} post={p} onClick={onPostClick} />
       ))}
     </div>
   );

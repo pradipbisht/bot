@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import apiBlog from "../../api/blogs/apiBlog";
-import { useAuth } from "../../context/AuthContext";
+import apiBlog from "../api/blogs/apiBlog";
+import { useAuth } from "../context/AuthContext";
 import { toast } from "react-toastify";
 
 function BlogDetail() {

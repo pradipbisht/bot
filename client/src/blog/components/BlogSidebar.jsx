@@ -35,19 +35,17 @@ export default function BlogSidebar({
           <h3 className="text-lg font-semibold text-gray-900 mb-4">
             Categories
           </h3>
-          <div className="space-y-2">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`block w-full text-left px-4 py-2 rounded-lg transition-colors duration-200 ${
-                  selectedCategory === category
-                    ? "bg-teal-100 text-teal-700 font-medium"
-                    : "text-gray-600 hover:bg-gray-100"
-                }`}>
-                {category === "all" ? "All Posts" : category}
-              </button>
-            ))}
+          <div>
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-teal-500 focus:border-transparent bg-white text-gray-700">
+              {categories.map((category) => (
+                <option key={category} value={category}>
+                  {category === "all" ? "All Posts" : category}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
 

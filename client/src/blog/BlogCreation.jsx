@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import DashboardLayout from "../../components/dashboard/DashboardLayout";
-import apiBlog from "../../api/blogs/apiBlog";
-import { useAuth } from "../../context/AuthContext";
+import DashboardLayout from "../components/dashboard/DashboardLayout";
+import apiBlog from "../api/blogs/apiBlog";
+import { useAuth } from "../context/AuthContext";
 import { toast } from "react-toastify";
 
 function BlogCreation() {

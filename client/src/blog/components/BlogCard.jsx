@@ -2,8 +2,8 @@ import React from "react";
 import { Calendar, User, ArrowRight, Edit, Trash } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import apiBlog from "../../../api/blogs/apiBlog";
-import { useAuth } from "../../../context/AuthContext";
+import apiBlog from "../../api/blogs/apiBlog";
+import { useAuth } from "../../context/AuthContext";
 
 export default function BlogCard({ post }) {
   const id = post._id || post.id;
@@ -75,6 +75,7 @@ export default function BlogCard({ post }) {
           </div>
         )}
       </div>
+
       <div className="p-4 md:p-6">
         <h2 className="text-lg md:text-xl font-semibold text-gray-900 mb-2 md:mb-3 line-clamp-2 hover:text-teal-600 transition-colors">
           {post.title}
