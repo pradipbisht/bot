@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AnimatedBackground from "../../../components/test/blot/BoltAnimation";
+import AnimatedBackground from "../../hero/BoltAnimation";
 import TestimonialCard from "./TestimonialCard";
 import TestimonialNavigation from "./TestimonialNavigation";
 // import AnimatedBackground from "../AnimatedBackground";
@@ -98,4 +98,3 @@ const TestimonialsSection = () => {
 };
 
 export default TestimonialsSection;
-

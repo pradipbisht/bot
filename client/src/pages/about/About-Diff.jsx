@@ -1,7 +1,7 @@
 // src/components/about/About-Diff.jsx
 import React from "react";
 import { Lightbulb, ShieldCheck, TrendingUp } from "lucide-react";
-import AnimatedBackground from "../../components/test/blot/BoltAnimation";
+import AnimatedBackground from "../hero/BoltAnimation";
 
 const AboutDifference = () => {
   const points = [
@@ -69,4 +69,3 @@ const AboutDifference = () => {
 };
 
 export default AboutDifference;
-

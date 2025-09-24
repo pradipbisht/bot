@@ -5,7 +5,7 @@ import apiBlog from "../api/blogs/apiBlog";
 import BlogSidebar from "./components/BlogSidebar";
 import BlogGrid from "./components/BlogGrid";
 import BlogDetail from "./BlogDetail";
-import AnimatedBackground from "../components/test/blot/BoltAnimation";
+import AnimatedBackground from "../pages/hero/BoltAnimation";
 
 function Blog() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -155,4 +155,3 @@ function Blog() {
 }
 
 export default Blog;
-

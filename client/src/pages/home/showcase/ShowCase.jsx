@@ -3,7 +3,7 @@
 // import ResultsList from "./ResultsList";
 // import MetricsCard from "./MetricsCard";
 
-import AnimatedBackground from "../../../components/test/blot/BoltAnimation";
+import AnimatedBackground from "../../hero/BoltAnimation";
 import MetricsCard from "./MetricCard";
 import ResultsList from "./ResultList";
 import ShowcaseHeader from "./ShowcaseHeader";
@@ -50,4 +50,3 @@ const Showcase = () => {
 };
 
 export default Showcase;
-

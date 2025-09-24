@@ -2,7 +2,7 @@ import React from "react";
 // import TestimonialsSection from "./TestiMonialSection";
 // import HeroSection from "./hero/HeroSection";
 import About from "../about/About";
-import BoltHero from "../../components/test/blot/BoltHero";
+import BoltHero from "../hero/BoltHero";
 import Showcase from "./showcase/ShowCase";
 // import Hero from "../../components/test/HeroSEction";
 
@@ -20,4 +20,3 @@ function Home() {
 }
 
 export default Home;
-

@@ -1,7 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { fadeIn, textVariant } from "./motion";
-// import heroImage from "hero-image.png";
 
 const Hero = () => {
   return (
@@ -82,4 +81,3 @@ const Hero = () => {
 };
 
 export default Hero;
-

@@ -1,7 +1,7 @@
 // src/components/about/About-Team.jsx
 import React, { useState, useEffect } from "react";
 import { Instagram, Linkedin, Twitter, Mail } from "lucide-react";
-import AnimatedBackground from "../../components/test/blot/BoltAnimation";
+import AnimatedBackground from "../hero/BoltAnimation";
 
 const AboutTeam = () => {
   const [imagesLoaded, setImagesLoaded] = useState({});
@@ -180,4 +180,3 @@ const AboutTeam = () => {
 };
 
 export default AboutTeam;
-

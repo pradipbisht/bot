@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import AnimatedBackground from "../../components/test/blot/BoltAnimation";
+import AnimatedBackground from "../hero/BoltAnimation";
 
 const CTA = () => {
   return (
@@ -25,4 +25,3 @@ const CTA = () => {
 };
 
 export default CTA;
-

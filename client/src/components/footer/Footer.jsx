@@ -2,8 +2,6 @@ import FooterColumn from "./FooterColumn";
 import ContactInfo from "./ContactFooter";
 import SocialLinks from "./SocialLinks";
 import FooterBottom from "./FooterBottom";
-import AnimatedBackground from "../test/blot/BoltAnimation";
-// import AnimatedBackground from "../test/blot/BoltAnimation";
 
 const Footer = () => {
   const servicesLinks = [
@@ -35,7 +33,6 @@ const Footer = () => {
 
   return (
     <footer className="relative bg-slate-50 text-gray-800 overflow-hidden">
-      <AnimatedBackground />
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <FooterColumn title="Services" links={servicesLinks} />
@@ -53,4 +50,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
