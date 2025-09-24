@@ -15,3 +15,4 @@ function CaseStudies() {
 }
 
 export default CaseStudies;
+

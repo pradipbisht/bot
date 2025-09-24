@@ -65,3 +65,4 @@ function PricingCard({ plan, billingCycle }) {
 }
 
 export default PricingCard;
+

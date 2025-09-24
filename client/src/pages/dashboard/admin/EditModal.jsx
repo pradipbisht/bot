@@ -148,3 +148,4 @@ export default function EditModal({ post, onClose, onSaved }) {
     </div>
   );
 }
+

@@ -23,7 +23,7 @@ const ResultsList = () => {
     <ul className="space-y-4 mb-8">
       {results.map((result, index) => (
         <li key={index} className="flex items-center group">
-          <div className="flex-shrink-0 w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mr-4 group-hover:bg-teal-50 transition-colors duration-300">
+          <div className="flex-shrink-0 w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center mr-4 group-hover:bg-teal-50">
             <result.icon className={`w-5 h-5 ${result.color}`} />
           </div>
           <span className="text-gray-700 font-medium">{result.text}</span>
@@ -34,3 +34,4 @@ const ResultsList = () => {
 };
 
 export default ResultsList;
+

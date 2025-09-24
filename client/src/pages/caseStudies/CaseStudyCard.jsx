@@ -59,3 +59,4 @@ function CaseStudyCard({ study }) {
 }
 
 export default CaseStudyCard;
+

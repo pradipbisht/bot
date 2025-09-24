@@ -35,6 +35,20 @@ export const checkAuthApi = async () => {
   }
 };
 
+export const registerApi = async (name, email, password) => {
+  try {
+    const { data } = await api.post("/api/auth/register", {
+      name,
+      email,
+      password,
+    });
+    return data;
+  } catch (error) {
+    logError("Error during registration", error);
+    throw error;
+  }
+};
+
 export const googleLoginApi = async (credential) => {
   try {
     const { data } = await api.post("/api/auth/google", { token: credential });

@@ -9,7 +9,7 @@ const FooterColumn = ({ title, links }) => {
           <li key={index}>
             <Link
               to={link.href}
-              className="text-gray-600 hover:text-teal-600 transition-colors duration-300">
+              className="text-gray-600 hover:text-teal-600">
               {link.label}
             </Link>
           </li>
@@ -20,3 +20,4 @@ const FooterColumn = ({ title, links }) => {
 };
 
 export default FooterColumn;
+

@@ -55,7 +55,7 @@ function Payment() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle payment processing here
-    console.log("Payment submitted:", paymentData);
+    // Note: In production, this should integrate with a secure payment processor
     alert(
       "Payment processed successfully! You'll receive a confirmation email shortly."
     );

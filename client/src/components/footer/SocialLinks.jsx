@@ -15,7 +15,7 @@ const SocialLinks = () => {
           key={index}
           href={href}
           aria-label={label}
-          className="text-gray-600 hover:text-teal-600 transition-colors duration-300 p-2 rounded-full hover:bg-teal-50">
+          className="text-gray-600 hover:text-teal-600 p-2 rounded-full hover:bg-teal-50">
           <Icon size={20} />
         </a>
       ))}
@@ -24,3 +24,4 @@ const SocialLinks = () => {
 };
 
 export default SocialLinks;
+

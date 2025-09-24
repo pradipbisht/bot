@@ -45,3 +45,4 @@ function PricingFAQ({ faqs, openFaq, setOpenFaq }) {
 }
 
 export default PricingFAQ;
+

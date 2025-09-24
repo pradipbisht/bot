@@ -105,3 +105,4 @@ export default function DashboardLayout({ children, title = "Dashboard" }) {
     </div>
   );
 }
+

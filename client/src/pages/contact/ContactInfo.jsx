@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 export default function ContactInfo() {
   return (
     <div className="lg:col-span-1">
-      <h2 className="text-3xl font-bold text-gray-900 mb-8">Get In Touch</h2>
+      <h2 className="text-3xl font-bold text-gray-900 mb-8">
+        Get In Touch
+      </h2>
 
       <div className="space-y-6">
         <div className="flex items-start">
@@ -13,9 +15,15 @@ export default function ContactInfo() {
             <Phone className="w-6 h-6 text-teal-600" />
           </div>
           <div>
-            <h3 className="font-semibold text-gray-900 mb-1">Phone</h3>
-            <p className="text-gray-600">+1 (555) 123-4567</p>
-            <p className="text-sm text-gray-500">Mon-Fri, 9am-6pm EST</p>
+            <h3 className="font-semibold text-gray-900 mb-1">
+              Phone
+            </h3>
+            <p className="text-gray-600">
+              +1 (555) 123-4567
+            </p>
+            <p className="text-sm text-gray-500">
+              Mon-Fri, 9am-6pm EST
+            </p>
           </div>
         </div>
 
@@ -24,8 +32,12 @@ export default function ContactInfo() {
             <Mail className="w-6 h-6 text-teal-600" />
           </div>
           <div>
-            <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
-            <p className="text-gray-600">hello@digitalgrow.com</p>
+            <h3 className="font-semibold text-gray-900 mb-1">
+              Email
+            </h3>
+            <p className="text-gray-600">
+              hello@digitalgrow.com
+            </p>
             <p className="text-sm text-gray-500">
               We'll respond within 2 hours
             </p>
@@ -37,7 +49,9 @@ export default function ContactInfo() {
             <MapPin className="w-6 h-6 text-teal-600" />
           </div>
           <div>
-            <h3 className="font-semibold text-gray-900 mb-1">Office</h3>
+            <h3 className="font-semibold text-gray-900 mb-1">
+              Office
+            </h3>
             <p className="text-gray-600">
               123 Business Street
               <br />
@@ -53,7 +67,9 @@ export default function ContactInfo() {
             <Clock className="w-6 h-6 text-teal-600" />
           </div>
           <div>
-            <h3 className="font-semibold text-gray-900 mb-1">Business Hours</h3>
+            <h3 className="font-semibold text-gray-900 mb-1">
+              Business Hours
+            </h3>
             <p className="text-gray-600">
               Monday - Friday: 9:00 AM - 6:00 PM
               <br />
@@ -72,19 +88,19 @@ export default function ContactInfo() {
         <div className="flex space-x-4">
           <a
             href="https://wa.me/15551234567"
-            className="bg-green-500 hover:bg-green-600 text-white p-3 rounded-lg transition-colors duration-200"
+            className="bg-green-500 hover:bg-green-600 text-white p-3 rounded-lg"
             title="WhatsApp">
             <MessageSquare className="w-6 h-6" />
           </a>
           <a
             href="mailto:hello@digitalgrow.com"
-            className="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-lg transition-colors duration-200"
+            className="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-lg"
             title="Email">
             <Mail className="w-6 h-6" />
           </a>
           <a
             href="tel:+15551234567"
-            className="bg-teal-600 hover:bg-teal-700 text-white p-3 rounded-lg transition-colors duration-200"
+            className="bg-teal-600 hover:bg-teal-700 text-white p-3 rounded-lg"
             title="Phone">
             <Phone className="w-6 h-6" />
           </a>
@@ -93,3 +109,5 @@ export default function ContactInfo() {
     </div>
   );
 }
+
+

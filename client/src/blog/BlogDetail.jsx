@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import apiBlog from "../api/blogs/apiBlog";
 import { useAuth } from "../context/AuthContext";
 import { toast } from "react-toastify";
+import DOMPurify from "dompurify";
 
 function BlogDetail() {
   const { id } = useParams();
@@ -78,7 +79,7 @@ function BlogDetail() {
           <div
             className="prose max-w-none text-gray-800 mb-8"
             dangerouslySetInnerHTML={{
-              __html: post.content || post.body || "",
+              __html: DOMPurify.sanitize(post.content || post.body || ""),
             }}
           />
 

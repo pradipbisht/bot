@@ -6,7 +6,7 @@ import UserTable from "./Alluser/UserTable";
 import EditUserForm from "./Alluser/EditUserForm";
 import ConfirmDelete from "./Alluser/ConfirmDelete";
 import PendingInvites from "./Alluser/PendingInvites";
-import adminsService from "../../services/adminsService";
+import adminsService from "../../features/adminsService";
 
 function AllUser() {
   const [users, setUsers] = useState([]);
@@ -265,3 +265,4 @@ function AllUser() {
 }
 
 export default AllUser;
+

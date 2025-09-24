@@ -57,13 +57,16 @@ const ProtectedRoute = ({ children, requiredRole = null }) => {
       // noop
     }
     if (!hasRequiredRole) {
-      // eslint-disable-next-line no-console
-      console.warn(
-        "ProtectedRoute: access denied. required=",
-        requiredRole,
-        "user=",
-        user
-      );
+      // Only log in development and avoid exposing sensitive user data
+      if (process.env.NODE_ENV !== "production") {
+        // eslint-disable-next-line no-console
+        console.warn(
+          "ProtectedRoute: access denied. required=",
+          requiredRole,
+          "userRole=",
+          userRole
+        );
+      }
       return (
         <div className="min-h-screen bg-gray-50 flex items-center justify-center">
           <div className="max-w-md w-full space-y-8">

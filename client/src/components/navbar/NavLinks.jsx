@@ -26,16 +26,31 @@ function NavLinks({ onClick }) {
           key={link.to}
           to={link.to}
           onClick={onClick}
-          className={`relative px-3 ubuntu-bold py-2 rounded-lg text-sm font-medium transition-all duration-200 group ${
+          className={`relative px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 group transform hover:-translate-y-0.5 hover:scale-105 ${
             location.pathname === link.to
-              ? "text-teal-600 bg-blue-50"
-              : "text-gray-700 hover:text-teal-600 hover:bg-gray-50"
+              ? "text-teal-600 bg-gradient-to-r from-teal-50 to-blue-50 shadow-md border border-teal-100"
+              : "text-gray-700 hover:text-teal-600 hover:bg-gradient-to-r hover:from-gray-50 hover:to-teal-50/50 hover:shadow-md"
           }`}>
-          {link.label}
+          {/* Background glow effect */}
+          <div
+            className={`absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+              location.pathname === link.to
+                ? "bg-gradient-to-r from-teal-100/50 to-blue-100/50"
+                : "bg-gradient-to-r from-teal-50/50 to-blue-50/50"
+            }`}></div>
+
+          <span className="relative z-10">{link.label}</span>
+
+          {/* Enhanced bottom indicator */}
           <span
-            className={`absolute ubuntu-bold bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-teal-600 transition-all duration-200 ${
-              location.pathname === link.to ? "w-full" : "group-hover:w-full"
+            className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-teal-500 to-blue-500 rounded-full transition-all duration-300 shadow-sm ${
+              location.pathname === link.to
+                ? "w-3/4 opacity-100"
+                : "w-0 group-hover:w-3/4 opacity-0 group-hover:opacity-100"
             }`}></span>
+
+          {/* Subtle inner highlight */}
+          <div className="absolute top-1 left-1 right-1 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </Link>
       ))}
     </>
@@ -43,3 +58,4 @@ function NavLinks({ onClick }) {
 }
 
 export default NavLinks;
+

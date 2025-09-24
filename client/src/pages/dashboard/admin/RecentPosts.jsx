@@ -36,3 +36,4 @@ export default function RecentPosts({ posts = [], onEdit, onDelete }) {
     </div>
   );
 }
+

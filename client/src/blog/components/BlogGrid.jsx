@@ -21,3 +21,4 @@ export default function BlogGrid({ posts, loading, error, onPostClick }) {
     </div>
   );
 }
+

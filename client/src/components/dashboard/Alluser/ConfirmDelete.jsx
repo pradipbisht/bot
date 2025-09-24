@@ -23,3 +23,4 @@ function ConfirmDelete({ user, onCancel, onConfirm }) {
 }
 
 export default ConfirmDelete;
+

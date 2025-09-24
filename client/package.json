@@ -16,6 +16,7 @@
     "axios": "^1.11.0",
     "chart.js": "^4.4.0",
     "chartjs": "^0.3.24",
+    "dompurify": "^3.2.7",
     "framer-motion": "^12.23.12",
     "lucide-react": "^0.543.0",
     "prop-types": "^15.8.1",

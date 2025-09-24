@@ -125,7 +125,7 @@ function Blog() {
                   />
                   {blogs.length > 0 && (
                     <div className="text-center mt-12">
-                      <button className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-8 py-3 rounded-lg font-medium transition-colors duration-200">
+                      <button className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-8 py-3 rounded-lg font-medium">
                         Load More Articles
                       </button>
                     </div>
@@ -155,3 +155,4 @@ function Blog() {
 }
 
 export default Blog;
+

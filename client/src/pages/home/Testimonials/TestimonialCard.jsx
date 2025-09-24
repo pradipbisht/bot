@@ -47,3 +47,4 @@ const TestimonialCard = ({ testimonial, isActive }) => {
 };
 
 export default TestimonialCard;
+

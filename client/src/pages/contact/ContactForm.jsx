@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { sendContactMessage } from "../../api/contact/apiContact";
+import DOMPurify from "dompurify";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -13,14 +14,61 @@ export default function ContactForm() {
     message: "",
   });
   const [submitting, setSubmitting] = useState(false);
+  const [lastSubmissionTime, setLastSubmissionTime] = useState(0);
 
   const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    // Sanitize input to prevent XSS
+    const sanitizedValue = DOMPurify.sanitize(value, {
+      ALLOWED_TAGS: [], // No HTML tags allowed in form inputs
+      ALLOWED_ATTR: [],
+    });
+    setFormData({ ...formData, [name]: sanitizedValue });
+  };
+
+  const validateForm = () => {
+    if (!formData.name.trim()) {
+      toast.error("Name is required");
+      return false;
+    }
+    if (!formData.email.trim()) {
+      toast.error("Email is required");
+      return false;
+    }
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast.error("Please enter a valid email address");
+      return false;
+    }
+    if (!formData.message.trim()) {
+      toast.error("Message is required");
+      return false;
+    }
+    // Prevent extremely long messages (potential DoS)
+    if (formData.message.length > 5000) {
+      toast.error("Message is too long (maximum 5000 characters)");
+      return false;
+    }
+    return true;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Rate limiting: prevent rapid submissions (1 minute cooldown)
+    const now = Date.now();
+    if (now - lastSubmissionTime < 60000) {
+      toast.error("Please wait before submitting another message");
+      return;
+    }
+
+    if (!validateForm()) {
+      return;
+    }
+
     setSubmitting(true);
+    setLastSubmissionTime(now);
     try {
       const data = await sendContactMessage(formData);
       toast.success(
@@ -45,8 +93,10 @@ export default function ContactForm() {
 
   return (
     <div className="lg:col-span-2 w-full text-left">
-      <div className="bg-white p-8 rounded-lg shadow-lg mx-0">
-        <h3 className="text-2xl font-bold mb-4">Send Us A Message</h3>
+      <div className="bg-white p-8 rounded-lg shadow-lg mx-0 border border-gray-200">
+        <h3 className="text-2xl font-bold mb-4 text-gray-900">
+          Send Us A Message
+        </h3>
         <p className="text-gray-600 mb-6">
           Tell us about your project and we'll get back to you within 1 business
           day.
@@ -67,7 +117,7 @@ export default function ContactForm() {
                 value={formData.name}
                 onChange={handleInputChange}
                 placeholder="Your full name"
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors"
+                className="w-full px-4 py-3 border-2 border-gray-200 bg-white text-gray-900 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
               />
             </div>
 
@@ -85,7 +135,7 @@ export default function ContactForm() {
                 value={formData.email}
                 onChange={handleInputChange}
                 placeholder="you@example.com"
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors"
+                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
               />
             </div>
           </div>
@@ -103,7 +153,7 @@ export default function ContactForm() {
                 value={formData.phone}
                 onChange={handleInputChange}
                 placeholder="+1 (555) 123-4567"
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors"
+                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
               />
             </div>
 
@@ -119,7 +169,7 @@ export default function ContactForm() {
                 value={formData.company}
                 onChange={handleInputChange}
                 placeholder="Your Company"
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors"
+                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
               />
             </div>
           </div>
@@ -136,7 +186,7 @@ export default function ContactForm() {
                 name="service"
                 value={formData.service}
                 onChange={handleInputChange}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors">
+                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
                 <option value="">Select a service</option>
                 <option value="seo">SEO</option>
                 <option value="content-marketing">Content Marketing</option>
@@ -164,7 +214,7 @@ export default function ContactForm() {
                 name="budget"
                 value={formData.budget}
                 onChange={handleInputChange}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors">
+                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500">
                 <option value="">Select budget range</option>
                 <option value="under-1000">Under $1,000</option>
                 <option value="1000-3000">$1,000 - $3,000</option>
@@ -189,7 +239,7 @@ export default function ContactForm() {
               value={formData.message}
               onChange={handleInputChange}
               placeholder="Tell us about your business goals..."
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-colors"
+              className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
             />
           </div>
 
@@ -207,14 +257,14 @@ export default function ContactForm() {
 
             <a
               href="/pricing"
-              className="flex-1 border-2 border-teal-600 text-teal-600 hover:bg-teal-50 font-semibold py-4 px-8 rounded-lg transition-colors duration-200 text-center">
+              className="flex-1 border-2 border-teal-600 text-teal-600 hover:bg-teal-50 font-semibold py-4 px-8 rounded-lg text-center">
               View Pricing
             </a>
           </div>
 
           <p className="text-sm text-gray-500 mt-4">
             * Required fields. We respect your privacy and will never share your
-            information.
+            information. All form submissions are secured and sanitized.
           </p>
         </form>
       </div>

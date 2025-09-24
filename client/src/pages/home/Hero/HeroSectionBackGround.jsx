@@ -95,3 +95,4 @@ function HeroBackground({ pattern = "stars" }) {
 }
 
 export default HeroBackground;
+

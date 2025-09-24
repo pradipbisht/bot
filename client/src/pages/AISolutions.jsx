@@ -118,7 +118,7 @@ function AISolutions() {
 
               <Link
                 to="/contact"
-                className="block bg-teal-600 hover:bg-teal-700 text-white text-center px-6 py-3 rounded-lg font-semibold transition-colors duration-200">
+                className="block bg-teal-600 hover:bg-teal-700 text-white text-center px-6 py-3 rounded-lg font-semibold">
                 Book AI Demo
               </Link>
             </div>
@@ -162,7 +162,7 @@ function AISolutions() {
 
               <Link
                 to="/contact"
-                className="block bg-teal-600 hover:bg-teal-700 text-white text-center px-6 py-3 rounded-lg font-semibold transition-colors duration-200">
+                className="block bg-teal-600 hover:bg-teal-700 text-white text-center px-6 py-3 rounded-lg font-semibold">
                 Book AI Demo
               </Link>
             </div>
@@ -205,7 +205,7 @@ function AISolutions() {
 
               <Link
                 to="/contact"
-                className="block bg-teal-600 hover:bg-teal-700 text-white text-center px-6 py-3 rounded-lg font-semibold transition-colors duration-200">
+                className="block bg-teal-600 hover:bg-teal-700 text-white text-center px-6 py-3 rounded-lg font-semibold">
                 Book AI Demo
               </Link>
             </div>
@@ -406,3 +406,4 @@ function AISolutions() {
 }
 
 export default AISolutions;
+

@@ -267,3 +267,4 @@ const BoltHero = () => {
 };
 
 export default BoltHero;
+

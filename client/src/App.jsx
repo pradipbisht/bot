@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import ChatBot from "./components/ChatBot";
 import About from "./pages/about/About";
-import Services from "./pages/Service";
+import Services from "./pages/services/Service";
 import AISolutions from "./pages/AISolutions";
 import Pricing from "./pages/pricing/Pricing";
 import Blog from "./blog/Blog";
@@ -30,7 +30,7 @@ import CaseStudies from "./pages/caseStudies/CaseStudie";
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-white">
       {/* Navbar at top */}
       <Navbar />
 
@@ -140,7 +140,11 @@ function App() {
 
       {/* Hidden Admin Login Link in Footer */}
       <div
-        style={{ textAlign: "center", fontSize: "12px", marginBottom: "8px" }}>
+        style={{
+          textAlign: "center",
+          fontSize: "12px",
+          marginBottom: "8px",
+        }}>
         <a
           href="/company-access/login"
           style={{ color: "#888", textDecoration: "none" }}>
@@ -153,5 +157,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

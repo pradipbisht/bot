@@ -91,3 +91,4 @@ function StarBackground() {
 }
 
 export default StarBackground;
+
